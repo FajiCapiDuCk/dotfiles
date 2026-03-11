@@ -1,4 +1,9 @@
 eval "$(oh-my-posh init zsh --config $HOME/dotfiles/.zsh/zen.yaml)"
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
 HIST_STAMPS="dd/mm/yyyy"
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
@@ -7,12 +12,12 @@ HIST_STAMPS="dd/mm/yyyy"
  fi
 # Compilation flags
 export ARCHFLAGS="-arch $(uname -m)"
-HISTFILE=~/.histfile
+HISTFILE="$XDG_CACHE_HOME/zsh_history"
 HISTSIZE=1000
 SAVEHIST=1000
+setopt append_history inc_append_history share_history # better history
 setopt autocd extendedglob nomatch notify
 bindkey -e
-zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit -c
