@@ -15,7 +15,7 @@ bindkey -e
 zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
-
+compinit -c
 # Format man pages
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -39,5 +39,5 @@ for config_file in "$ZSH_CONFIG_DIR"/*.zsh; do
 done
 # Load plugins
 source ~/dotfiles/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/dotfiles/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/dotfiles/.zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh
+source ~/dotfiles/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
