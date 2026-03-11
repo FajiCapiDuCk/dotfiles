@@ -17,6 +17,8 @@ HISTSIZE=1000
 SAVEHIST=1000
 setopt append_history inc_append_history share_history # better history
 setopt autocd extendedglob nomatch notify
+setopt HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS HIST_IGNORE_DUPS
+unsetopt EXTENDED_HISTORY
 bindkey -e
 
 autoload -Uz compinit
