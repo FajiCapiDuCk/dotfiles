@@ -13,9 +13,8 @@ alias ff='fastfetch'
 alias fixdiscord='sh -c "$(curl -sS https://raw.githubusercontent.com/Vendicated/VencordInstaller/main/install.sh)"'
 
 # Useful aliases
-alias ls='la -lha'
-alias la='eza -a --color=always --group-directories-first --icons'
-alias ll='eza -l --color=always --group-directories-first --icons'
+alias ls='eza -ha --color=always --group-directories-first --icons'
+alias ll='eza -lha --color=always --group-directories-first --icons'
 alias lt='eza -aT --color=always --group-directories-first --icons'
 alias l.='eza -a | grep -e "^\."'
 
