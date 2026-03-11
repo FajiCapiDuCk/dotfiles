@@ -30,7 +30,7 @@ blocks:
     segments:
       - type: session
         style: plain
-        template: "{{ if .SSHSession }}\ueba9 {{ end }}{{ .UserName }}@{{ .HostName }} "
+        template: "{{ if .SSHSession }}\ueba9 {{ .UserName }}@{{ .HostName }} {{ end }}"
       - type: executiontime
         style: plain
         foreground: yellow
