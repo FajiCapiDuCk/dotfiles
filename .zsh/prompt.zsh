@@ -13,7 +13,13 @@ precmd() {
   else
     RPROMPT=""
   fi
+
+  if [[ $EUID -eq 0 ]]; then
+    ROOT_INDICATOR="%K{red}%F{white} ROOT %f%k "
+  else
+    ROOT_INDICATOR=""
+  fi
 }
 # left prompt
-PROMPT='%~${vcs_info_msg_0_}
-%(?.%F{magenta}.%F{red})❯%f '
+PROMPT='${ROOT_INDICATOR}%~${vcs_info_msg_0_}
+%(?.%F{magenta}.%F{red})%(!.#.❯)%f '
