@@ -1,9 +1,8 @@
-eval "$(oh-my-posh init zsh --config $HOME/dotfiles/.zsh/zen.yaml)"
-
+#export OMP_CACHE_HOME="/tmp"
+#eval "$(oh-my-posh init zsh --config $HOME/dotfiles/.zsh/zen.yaml)"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-
 HIST_STAMPS="dd/mm/yyyy"
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
@@ -18,6 +17,7 @@ SAVEHIST=1000
 setopt append_history inc_append_history share_history # better history
 setopt autocd extendedglob nomatch notify
 setopt HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS HIST_IGNORE_DUPS
+HISTCONTROL=ignoreboth
 unsetopt EXTENDED_HISTORY
 bindkey -e
 
