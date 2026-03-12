@@ -21,6 +21,11 @@ HISTCONTROL=ignoreboth
 unsetopt EXTENDED_HISTORY
 bindkey -e
 
+# Common keybindings that I use often
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+bindkey '^H' backward-kill-word
+
 autoload -Uz compinit
 compinit -c
 # Format man pages
