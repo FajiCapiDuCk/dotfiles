@@ -21,5 +21,5 @@ precmd() {
   fi
 }
 # left prompt
-PROMPT='${ROOT_INDICATOR}%~${vcs_info_msg_0_}
-%(?.%F{magenta}.%F{red})%(!.#.❯)%f '
+PROMPT='${ROOT_INDICATOR}%F{blue}%~%f${vcs_info_msg_0_}
+%(?.%F{magenta}.%F{red})%(!.#.>)%f '
