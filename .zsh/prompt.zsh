@@ -22,4 +22,4 @@ precmd() {
 }
 # left prompt
 PROMPT='${ROOT_INDICATOR}%F{blue}%~%f${vcs_info_msg_0_}
-%(?.%F{magenta}.%F{red})%(!.#.>)%f '
+%(?.%F{green}.%F{red})%(!.#.>)%f '

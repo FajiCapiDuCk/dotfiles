@@ -50,12 +50,6 @@ alias update='sudo pacman -Syu'
 # Get fastest mirrors
 alias mirror='sudo cachyos-rate-mirrors'
 
-# Help new Arch users
-alias apt='man pacman'
-alias apt-get='man pacman'
-alias please='sudo'
-alias tb='nc termbin.com 9999'
-
 # Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
@@ -63,7 +57,3 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 alias jctl='journalctl -p 3 -xb'
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-alias whereami='pwd'
