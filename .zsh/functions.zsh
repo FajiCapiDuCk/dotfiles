@@ -172,7 +172,7 @@ extract() {
 alias whatismyip="whatsmyip"
 whatsmyip () {
     if [ -n "$1" ]; then
-    printf "Location: $(curl -s https://am.i.mullvad.net/country), $(curl -s https://am.i.mullvad.net/city)\n"
+    printf "Location: $(curl -s https://am.i.mullvad.net/country), $(curl -s https://am.i.mullvad.net/city), Organization: $(curl -s https://am.i.mullvad.net/json | jq -r '.organization')\n"
     fi
     # Internal IP Lookup.
     if command -v ip &> /dev/null; then
