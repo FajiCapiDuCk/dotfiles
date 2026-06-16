@@ -1,33 +1,37 @@
 #/usr/bin/env bash
 
-bat0=$(cat /sys/class/power_supply/BAT0/capacity 2>/dev/null || echo 0)
-bat1=$(cat /sys/class/power_supply/BAT1/capacity 2>/dev/null || echo 0)
+amount=$(ls /sys/class/power_supply | grep "BAT" | wc -l)
+if [[ amount -eq 0 ]]; then
+	echo "BATTERY NOT FOUND"
+	exit 1
+	fi
 
-average=$(( ($bat0 + $bat1) / 2 ))
+for (( i = 0 ; i < "$amount" ; i++)); do declare bat$i=$(cat /sys/class/power_supply/BAT$i/capacity); done
+for (( i = 0 ; i < "$amount" ; i++)); do sum=$(( ($sum + $bat$i) ) )); done
+average=$(( ($sum/$amount) ))
 
-status=$(cat /sys/class/power_supply/BAT0/status 2>/dev/null)
-status1=$(cat /sys/class/power_supply/BAT1/status 2>/dev/null)
+for (( i = 0 ; i < $amount ; i++)); do declare status$i=$(cat /sys/class/power_supply/BAT$i/status); done
+
 NOTIFY_LOCK="/tmp/battery_notify.lock"
-
-if [[ "$status" != "Charging"  && "$status1" != "Charging" ]] && [[ $average -le 20 ]]; then
-    if [ ! -f "$NOTIFY_LOCK" ] || [ $(($(date +%s) - $(stat -c %Y "$NOTIFY_LOCK"))) -ge 600 ]; then
+charging=0
+for (( i = 0 ; i < $amount ; i++)); do 
+    if [[ "$status$i" == "Charging" ]]; then
+        charging=1
+        fi
+done
+if [[ "$charging" == 0 ]] && [[ $average -le 20 ]]; then
+     if [ ! -f "$NOTIFY_LOCK" ] || [ $(($(date +%s) - $(stat -c %Y "$NOTIFY_LOCK"))) -ge 300 ]; then
         notify-send -u critical -i battery-low \
             "⚠️ Low Battery Warning" \
             "Battery at $average%! Connect charger soon."
         touch "$NOTIFY_LOCK"
     fi
-fi
-
-if [[ "$status" = "Charging" || "$status1" = "Charging" ]]; then
+    elif [[ "$charging" == 1 ]]; then
     echo "Charging $average%"
 else
-    if [ $average -ge 80 ]; then
-        echo "Discharging $average%"
-    elif [ $average -ge 50 ]; then
-        echo "Discharging $average%"
-    elif [ $average -ge 20 ]; then
+    if [ $average -ge 20 ]; then
         echo "Discharging $average%"
     else
-        echo "VERY LOW $average% (LOW)"
+        echo "LOW $average% (LOW)"
     fi
 fi
