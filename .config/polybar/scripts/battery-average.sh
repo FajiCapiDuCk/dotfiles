@@ -38,10 +38,9 @@ if [[ "$charging" == 0 && "$average" -le 20 ]]; then
     fi
 elif [[ "$charging" == 1 ]]; then
     echo "Charging $average%"
-else
+    fi
     if [[ "$average" -ge 20 ]]; then
         echo "Discharging $average%"
     else
         echo "LOW $average%"
     fi
-fi
