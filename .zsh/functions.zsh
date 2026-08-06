@@ -31,7 +31,7 @@ cd ()
 extract() {
     if [ -z "$1" ]; then
         echo "Usage: extract <archive>"
-        return 1
+        exit 1
     fi
 
     local archive="$1"
@@ -65,7 +65,7 @@ extract() {
 
     if [ -d "$dest_dir" ]; then
         echo "Directory '$dest_dir' already exists. Choose a different name or remove it first."
-        return 1
+        exit 1
     fi
 
     mkdir -p "$dest_dir"
@@ -86,8 +86,8 @@ extract() {
                 tar --zstd -xf "$archive" -C "$dest_dir"
             else
                 echo "zstd not installed. Cannot extract .tar.zst files."
-                rm -rf "$dest_dir"
-                return 1
+                rmdir "$dest_dir"
+                exit 1
             fi
             ;;
         *.tar)
@@ -109,8 +109,8 @@ extract() {
                 unzip "$archive" -d "$dest_dir"
             else
                 echo "unzip not installed. Cannot extract .zip files."
-                rm -rf "$dest_dir"
-                return 1
+                rmdir "$dest_dir"
+                exit 1
             fi
             ;;
         *.rar)
@@ -120,8 +120,8 @@ extract() {
                 rar x "$archive" "$dest_dir/"
             else
                 echo "unrar/rar not installed. Cannot extract .rar files."
-                rm -rf "$dest_dir"
-                return 1
+                rmdir "$dest_dir"
+                exit 1
             fi
             ;;
         *.7z)
@@ -129,8 +129,8 @@ extract() {
                 7z x "$archive" -o"$dest_dir"
             else
                 echo "7z not installed. Cannot extract .7z files."
-                rm -rf "$dest_dir"
-                return 1
+                rmdir "$dest_dir"
+                exit 1
             fi
             ;;
         *.zst)
@@ -138,8 +138,8 @@ extract() {
                 zstd -dc "$archive" > "$dest_dir/${base_name%.zst}"
             else
                 echo "zstd not installed. Cannot extract .zst files."
-                rm -rf "$dest_dir"
-                return 1
+                rmdir "$dest_dir"
+                exit 1
             fi
             ;;
         *.lzma)
@@ -147,8 +147,8 @@ extract() {
             ;;
         *)
             echo "Unsupported archive format: $archive"
-            rm -rf "$dest_dir"
-            return 1
+            rmdir "$dest_dir"
+            exit 1
             ;;
     esac
 
@@ -164,8 +164,8 @@ extract() {
         fi
     else
         echo "Failed to extract '$archive'"
-        rm -rf "$dest_dir"
-        return $exit_code
+        rmdir "$dest_dir"
+        exit $exit_code
     fi
 }
 # IP address lookup
