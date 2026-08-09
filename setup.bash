@@ -65,7 +65,7 @@ if [[ "$config" == ".zsh" ]]; then
 link_dotconfig_tree() {
     local cfg="$1"
 
-    local src_root="$HOME/dotfiles/$cfg/.config"
+    local src_root="$HOME/dotfiles/$cfg"
     local dest_root="$HOME/.config"
 
     [[ -d "$src_root" ]] || { echo "No config tree: $src_root" >&2; exit 1; }
@@ -102,9 +102,9 @@ link_dotconfig_tree() {
             local dest="${dest_root}/${rel}"
 
             if [[ -L "$dest" ]]; then
-                local cur
+                local current
                 currrent="$(readlink "$dest")"
-                if [[ "$cur" == "$path" ]]; then
+                if [[ "$current" == "$path" ]]; then
                     rm -f "$dest"
                 fi
             fi
