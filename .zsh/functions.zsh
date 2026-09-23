@@ -12,6 +12,14 @@ copy() {
     fi
 }
 
+tarnow() {
+	tar -czvf $1.tar.gz $1
+}
+
+untar() {
+	tar -zxvf $1	
+}
+
 pack() {
 	strip $1 && upx --lzma --best $1
 }

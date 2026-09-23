@@ -21,8 +21,6 @@ alias l.='eza -a | grep -e "^\."'
 # Common use aliases
 alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias fixpacman='sudo rm /var/lib/pacman/db.lck'
-alias tarnow='tar -acf '
-alias untar='tar -zxvf '
 alias wget='wget -c '
 alias psmem='ps auxf | sort -nr -k 4'
 alias psmem10='ps auxf | sort -nr -k 4 | head -10'
