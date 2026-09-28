@@ -273,7 +273,7 @@ newgo() {
         echo "Error: Too many arguments provided" >&2
         return 1
         fi
-    mkdir $1 && cd $1 && go mod init $1 && touch main.go
+    mkdir $1 && cd $1 && go mod init $1 && echo -e 'package main\n\nfunc main() {\n}' >> main.go
         
 }
 
