@@ -63,9 +63,7 @@ if [[ "$config" == ".zsh" ]]; then
     fi
     
 link_dotconfig_tree() {
-    local cfg="$1"
-
-    local src_root="$HOME/dotfiles/$cfg"
+    local src_root="$HOME/dotfiles/$config"
     local dest_root="$HOME/.config"
 
     [[ -d "$src_root" ]] || { echo "No config tree: $src_root" >&2; exit 1; }
@@ -75,11 +73,11 @@ link_dotconfig_tree() {
         while IFS= read -r -d '' path; do
             local rel="${path#"$src_root"/}"
             local dest="${dest_root}/${rel}"
-            echo $dest
             mkdir -p "$(strip_last_component "$dest")"
 
             # If dest exists:
             if [[ -e "$dest" || -L "$dest" ]]; then
+            			echo "Symlink error: $dest already exists and is a symlink" >&2
                         continue
                 fi
 
@@ -88,7 +86,6 @@ link_dotconfig_tree() {
                     echo "Conflict at: $dest (exists and is not a symlink)" >&2
                     continue
                 fi
-
             ln -s "$path" "$dest"
         done < <(find "$src_root" -type f -print0)
 
