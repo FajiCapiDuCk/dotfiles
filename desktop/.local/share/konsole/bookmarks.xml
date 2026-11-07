@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xbel>
+<xbel xmlns:bookmark="http://www.freedesktop.org/standards/desktop-bookmarks" xmlns:kdepriv="http://www.kde.org/kdepriv" xmlns:mime="http://www.freedesktop.org/standards/shared-mime-info">
+ <bookmark href="file:///home/fajicapiduck/.config/micro">
+  <title>micro</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name=""/>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///run/media/fajicapiduck/toshiba/Pictures">
+  <title>Pictures</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name=""/>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file://dave/usr/share/dotnet/shared/Microsoft.NETCore.App">
+  <title>Microsoft.NETCore</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name=""/>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/fajicapiduck/launch-gacha-scripts">
+  <title>launch-gacha-scripts</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name=""/>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/fajicapiduck/test/yt-dlp-test">
+  <title>yt-dlp-test</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name=""/>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="ssh://ellen">
+  <title>ellen</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name=""/>
+   </metadata>
+  </info>
+ </bookmark>
+</xbel>
