@@ -42,25 +42,31 @@ strip_last_component() {
   printf '%s\n' "$p"
 }
 
-
+# zsh related part(dont ask me why it is not a function)
 if [[ "$config" == ".zsh" ]]; then
-    [[ "$PWD" == "$HOME/dotfiles" ]] || echo "Not in dotfiles folder please cd into it" >&2 && exit 1
-    if [[ "$action" == "unlink" && -L "~/.zshrc" ]]; then
-        rm ~/.zshrc
-        [[ -L ~/.zsh ]] || exit 0
-        rm ~/.zsh
-        exit 0
-        else
-        echo "Nothing to unlink for zsh"
-        exit 0
-        fi
-    if [[ -f "~/.zshrc" && ! -L "~/.zshrc" ]]; then
-        mv ~/.zshrc ~/.zshrc.bak
-        fi
-    ln -s .zsh ~/.zsh
-    ln -s .zshrc ~/.zshrc
-    exit 0
+    if [[ "$PWD" != "$HOME/dotfiles" ]]; then
+        echo "Not in dotfiles folder, please cd into it" >&2
+        exit 1
     fi
+
+    if [[ "$action" == "unlink" ]]; then
+        [[ -L "$HOME/.zshrc" ]] && rm "$HOME/.zshrc"
+        [[ -L "$HOME/.zsh" ]] && rm "$HOME/.zsh"
+        echo "Unlinked zsh configuration"
+        exit 0
+    fi
+
+    # Back up existing .zshrc if it isn't a symlink
+    if [[ -f "$HOME/.zshrc" && ! -L "$HOME/.zshrc" ]]; then
+        mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
+    fi
+
+    ln -sfn "$HOME/dotfiles/.zsh" "$HOME/.zsh"
+    ln -sfn "$HOME/dotfiles/.zshrc" "$HOME/.zshrc"
+
+    echo "Linked zsh configuration"
+    exit 0
+fi
     
 link_dotconfig_tree() {
     local src_root="$HOME/dotfiles/$config"
